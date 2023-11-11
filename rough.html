@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+     let posts=[]
+
+
+function getpost(){
+setTimeout(() =>{
+let str=''
+for(let i=0; i<posts.length;i++){
+  str+= posts[i].title;
+}
+},1000)
+}
+
+
+function createpost(e){
+return new Promise((resolve, reject) =>{
+  posts.push(e)
+  resolve(e)
+ 
+},3000)  
+}
+
+
+function updateLastUserActivityTime(){
+  return new Promise((resolve, reject) =>{
+    user.time= new Date()
+    resolve()
+
+  },1000)
+}
+
+function deletePost() {
+  return new Promise ((resolve, reject) =>{
+    setTimeout(() =>{
+      if(posts.length>0){
+      posts.pop()
+      resolve()
+    }
+    else{
+      console.error('ARRAY IS EMPTY');
+    }
+  }, 1000)
+    })
+    
+}
+
+console.log(posts)
+Promise.all([createpost(user ={title: 'Post 1', time:'09/11/2023 1:22 PM'}), updateLastUserActivityTime()],
+ createpost(user ={title: 'Post 2', time:'10/11/2023 1:22 PM'}),updateLastUserActivityTime(),
+ createpost(user ={title: 'Post 3', time:'11/11/2023 1:22 PM'}),updateLastUserActivityTime(), deletePost(), getpost(), )
+console.log(posts)
+  </script>
+</body>
+</html>
